@@ -27,16 +27,26 @@ app.Run();
 public class LCMclass
 {
     public static string LCM(int x, int y)
-    {
-        if (x > 0 && y > 0)
-        {
-            int i = 1;
-            while ((x * i) % y != 0)
-            {
-                i++;
-            }
-            return (x * i).ToString();
-        }
+{
+    if (x < 0 || y < 0)
         return "NaN";
+
+    if (x == 0 || y == 0)
+        return "NaN";
+
+    int a = x, b = y;
+
+    while (b != 0)
+    {
+        int temp = b;
+        b = a % b;
+        a = temp;
     }
+
+    int gcd = a;
+
+    long lcm = (long)x * y / gcd;
+
+    return lcm.ToString();
+}
 }
