@@ -14,7 +14,33 @@ var app = builder.Build();
     app.UseSwaggerUI(options => {
         options.SwaggerEndpoint("/openapi/v1.json", "v1");
     });
-app.MapGet("/boltekovalihan_gmail_com", (int x, int y) => LCMclass.LCM(x, y));
+app.MapGet("/boltekovalihan_gmail_com", (string x, string y) =>
+{
+    if (!int.TryParse(x, out int a) || !int.TryParse(y, out int b))
+        return Results.Text("NaN");
+
+    if (a < 0 || b < 0)
+        return Results.Text("NaN");
+
+    if (a == 0 || b == 0)
+        return Results.Text("NaN");
+
+    int gcd = GCD(a, b);
+    long lcm = (long)a * b / gcd;
+
+    return Results.Text(lcm.ToString());
+});
+
+int GCD(int a, int b)
+{
+    while (b != 0)
+    {
+        int temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+}
 
 app.UseHttpsRedirection();
 
