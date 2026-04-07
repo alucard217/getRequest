@@ -14,7 +14,7 @@ var app = builder.Build();
     app.UseSwaggerUI(options => {
         options.SwaggerEndpoint("/openapi/v1.json", "v1");
     });
-app.MapGet("/boltekov_alihan_gmail_com", (int x, int y) => LCMclass.LCM(x, y));
+app.MapGet("/boltekovalihan_gmail_com", (int x, int y) => LCMclass.LCM(x, y));
 
 app.UseHttpsRedirection();
 
