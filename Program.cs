@@ -9,6 +9,8 @@ app.MapGet("/boltekovalihan_gmail_com", (string x, string y) =>
 
     if (a < 0 || b < 0)
         return Results.Text("NaN");
+    if (a == 0 && b == 0)
+        return Results.Text("0");
     
     int gcd = GCD(a, b);
 
